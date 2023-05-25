@@ -1,16 +1,35 @@
-import Footer from "./Components/Home/Footer";
-import Navbar from "./Components/Home/Navbar";
-import HomePage from "./Pages/HomePage";
-import { Routes, Route,Navigate } from "react-router-dom";
-export default function App() {
+import React, { useEffect } from "react";
+import { BrowserRouter } from "react-router-dom";
+
+// Import Routes
+import Routing from "./routes/Routing";
+
+// Redux
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import { loadUser } from "./redux/actions/auth";
+import setAuthToken from "./utils/setAuthToken";
+import Alert from "./common/Alert";
+
+const token = sessionStorage.getItem("token");
+
+if (token) {
+  setAuthToken(token);
+}
+
+function App() {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
   return (
-    <div className="bg-gray-50">
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Navigate to="/HomePage" />} />
-        <Route path="/HomePage" element={<HomePage/>}/>
-      </Routes>
-      <Footer />
-    </div>
+    <Provider store={store}>
+      <div className="relative">
+        <Alert />
+        <Routing />
+      </div>
+    </Provider>
   );
 }
+
+export default App;
