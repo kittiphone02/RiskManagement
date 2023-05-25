@@ -13,9 +13,7 @@ const schema = yup.object().shape({
   password: yup.string().required("Password is required"),
 });
 
-
-
-const Login = ({ login , auth }) => {
+const Login = ({ login, auth }) => {
   const {
     register,
     handleSubmit,
@@ -26,14 +24,12 @@ const Login = ({ login , auth }) => {
   });
 
   const onSubmit = (data) => {
-    Login(data); // Call the login action and pass the form data
+    login(data); // Call the login action and pass the form data
   };
 
-
-  if (auth.isAuthenticated ) {
+  if (auth.isAuthenticated) {
     return <Navigate to="/" />;
   }
-  
 
   return (
     <>
@@ -129,4 +125,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { Login })(Login);
+export default connect(mapStateToProps, { login })(Login);
