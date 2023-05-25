@@ -10,7 +10,7 @@
     theme: {
       extend: {
         colors: {
-          cyan: colors.cyan,
+          gray: colors.gray,
         },
       },
     },
@@ -22,7 +22,7 @@
   ```
 */
 
-import Layout from '../../Components/layouts/Layout'
+import Layout from '../../Components/layouts/RootLayout'
 import { Fragment, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import {
@@ -153,13 +153,13 @@ export default function Dashboard() {
                   <div className="mt-6 flex space-x-3 md:mt-0 md:ml-4">
                     <button
                       type="button"
-                      className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2"
+                      className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
                     >
                       Add money
                     </button>
                     <button
                       type="button"
-                      className="inline-flex items-center rounded-md border border-transparent bg-cyan-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2"
+                      className="inline-flex items-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
                     >
                       Send money
                     </button>
@@ -192,7 +192,7 @@ export default function Dashboard() {
                       </div>
                       <div className="bg-gray-50 px-5 py-3">
                         <div className="text-sm">
-                          <a href={card.href} className="font-medium text-cyan-700 hover:text-cyan-900">
+                          <a href={card.href} className="font-medium text-gray-700 hover:text-gray-900">
                             View all
                           </a>
                         </div>

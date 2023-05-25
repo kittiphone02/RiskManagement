@@ -22,9 +22,10 @@
   ```
 */
 
-import Layout from '../../Components/layouts/Layout'
+import Layout from '../../Components/layouts/RootLayout'
 import { Fragment, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
+import './Dashboard.css'
 import {
   Bars3CenterLeftIcon,
   BellIcon,
@@ -101,7 +102,7 @@ export default function Dashboard() {
         {/* Static sidebar for desktop */}
   
 
-        <div className="flex flex-1 flex-col lg:pl-64">
+        <div className="flex flex-col">
           <div className="flex h-16 flex-shrink-0 border-b border-gray-200 bg-white lg:border-none">
 
           </div>
