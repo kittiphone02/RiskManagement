@@ -1,0 +1,63 @@
+// ************************************
+// =============  Sign in =============
+.username-input {
+  @apply appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500
+  text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm;
+}
+
+.password-input {
+  @apply appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500
+  text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm;
+}
+
+.signIn-btn {
+  @apply relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md
+  text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+
+  &__invalid {
+    @apply relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md
+    text-gray-400 bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+  }
+
+  &__icon {
+    @apply h-5 w-5 text-red-500 group-hover:text-indigo-400;
+  }
+}
+
+// =============  Radio Group =============
+.radio {
+  @apply mt-2;
+
+  &__group {
+    @apply flex items-center gap-x-3;
+  }
+
+  &__item {
+    @apply -m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer;
+
+    &-active {
+      @apply ring ring-blue-600 ring-offset-1;
+    }
+  }
+
+  &__text {
+    @apply h-9 w-9 flex justify-center items-center border border-black border-opacity-10 rounded-full
+    group-hover:shadow;
+
+    &-active {
+      @apply p-2;
+    }
+  }
+}
+
+// =============  Dialog Container =============
+.dialog-container {
+  @apply inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left
+  shadow-xl transform transition-all sm:my-8 sm:align-middle sm:p-6;
+}
+
+// =============  Dropdown =============
+.dropdown {
+  @apply relative border rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default
+  focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm;
+}

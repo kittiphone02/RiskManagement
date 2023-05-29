@@ -22,14 +22,35 @@ import {
   UserGroupIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
+import { BsPerson } from "react-icons/bs";
+import { 
+  HiOutlineHome,
+  HiCubeTransparent
+
+} from "react-icons/hi2";
+
 
 export const movementRoute = [
   {
-    name: "ລາຍການຄວາມສ່ຽງ",
+    name: "Dashborad",
     description: "ຈັດການຂໍ້ມູນລາຍງານຄວາມສ່ຽງທັງໝົດ.",
-    route: "/register",
-    icon: HomeIcon,
-    permission: [ROLE_APPROVE, ROLE_VERIFY, ROLE_USER],
+    route: "/",
+    icon: HiOutlineHome,
+    permission: [ROLE_ADMIN],
+  },
+  {
+    name: "Branch",
+    description: "ຈັດການຂໍ້ມູນລາຍງານຄວາມສ່ຽງທັງໝົດ.",
+    route: "/branch",
+    icon: HiCubeTransparent,
+    permission: [ROLE_ADMIN],
+  },
+  {
+    name: "Likelihoods",
+    description: "ຈັດການຂໍ້ມູນລາຍງານຄວາມສ່ຽງທັງໝົດ.",
+    route: "/likelihoods",
+    icon: HiCubeTransparent,
+    permission: [ROLE_ADMIN],
   },
 
 

@@ -23,11 +23,11 @@
 */
 
 import { Fragment, useState } from 'react'
-import { logout } from "../../redux/actions/auth";
+import { logout } from "../../../redux/actions/auth"
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import PropTypes from "prop-types";
 import { connect } from 'react-redux';
-import { movementRoute } from "../../constants/routes";
+import { movementRoute } from "../../../constants/routes"
 import {
   Bars3CenterLeftIcon,
   BellIcon,

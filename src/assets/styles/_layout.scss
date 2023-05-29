@@ -1,0 +1,14 @@
+.layout {
+  @apply grid grid-rows-layout;
+  margin-top: 3.55rem;
+  min-height: calc(100vh - 3.55rem);
+
+  @screen sm {
+    margin-top: 4.05rem;
+    min-height: calc(100vh - 4.05rem);
+  }
+}
+
+.section-md {
+  @apply max-w-7xl mx-auto mb-2;
+}

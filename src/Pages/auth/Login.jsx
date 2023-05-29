@@ -1,19 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import React, { useState } from "react";
+import { Link, Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import { login } from "../../redux/actions/auth";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import PropTypes from "prop-types";
-import { Navigate } from "react-router-dom";
+import { login } from "../../features/auth/authSlice";
 
 const schema = yup.object().shape({
   username: yup.string().required("Username is required"),
   password: yup.string().required("Password is required"),
 });
 
-const Login = ({ login, auth }) => {
+const Login = () => {
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+  const [submitted, setSubmitted] = useState(false); // Add submitted state
+
   const {
     register,
     handleSubmit,
@@ -24,7 +26,10 @@ const Login = ({ login, auth }) => {
   });
 
   const onSubmit = (data) => {
-    login(data); // Call the login action and pass the form data
+    setSubmitted(true); // Update the submitted state
+    dispatch(login(data)).finally(() => {
+      setSubmitted(false); // Reset the submitted state after the login action is completed
+    });
   };
 
   if (auth.isAuthenticated) {
@@ -37,10 +42,10 @@ const Login = ({ login, auth }) => {
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
             <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-            <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 p-5">Sign In</h2>
+              <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 p-5">Sign In</h2>
               <div>
                 <label htmlFor="username" className="block text-sm font-medium text-gray-700">
-                Username
+                  Username
                 </label>
                 <div className="mt-1">
                   <input
@@ -101,28 +106,19 @@ const Login = ({ login, auth }) => {
               <div>
                 <button
                   type="submit"
+                  disabled={submitted}
                   className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
-                  Sign in
+                  {submitted ? "Loading..." : "Sign in"}
                 </button>
               </div>
-          
             </form>
-   
-    
           </div>
         </div>
+
       </div>
     </>
-  )
-};
-Login.propTypes = {
-  login: PropTypes.func.isRequired,
-  auth: PropTypes.any.isRequired,
+  );
 };
 
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-});
-
-export default connect(mapStateToProps, { login })(Login);
+export default Login;
