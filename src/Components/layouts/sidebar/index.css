@@ -5,3 +5,12 @@
   .active {
     @apply bg-blue-100 text-blue-600;
   }
+
+  .sidebar-container {
+    /* Existing styles */
+    
+    /* New styles for sticking to the bottom */
+    position: fixed;
+    bottom: 0;
+  }
+  

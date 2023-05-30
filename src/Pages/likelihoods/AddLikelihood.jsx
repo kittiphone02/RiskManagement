@@ -6,31 +6,34 @@ import classNames from "../../utils/classname";
 import { addLikelihood } from "../../features/likelihoods/likelihoodsSlice";
 import DialogProvider from "../../common/DialogProvider";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { SubmitButton, CancelButton } from "../../core/buttons";
 import * as yup from "yup";
 
 const branchValidate = yup.object().shape({
-  name: yup.string().required("Branch name is required"),
+    value: yup.string().required("Branch name is required"),
 });
 
 function AddLikelihood({ open, setOpen }) {
   const dispatch = useDispatch();
-  const [submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState(false);    
   const {
     handleSubmit,
     register,
     formState: { errors, touched },
-    setValue,
   } = useForm({
     resolver: yupResolver(branchValidate),
     defaultValues: {
-      name: "",
+        value: "",
     },
   });
 
+
   const onSubmit = async (values) => {
     setSubmitted(true);
-    const res = await dispatch(addLikelihood(values));
-    if (res) {
+     const res = await dispatch(addLikelihood(values));
+     console.log(values);
+
+     if (res.success) {
       setOpen(false);
     }
     setSubmitted(false);
@@ -45,38 +48,39 @@ function AddLikelihood({ open, setOpen }) {
           </h3>
           <form onSubmit={handleSubmit(onSubmit)} className="mt-5 grid grid-cols-6">
             <div className="col-span-6">
-              <label htmlFor="name" className="form-label">
-              likelihood (likelihood)
+              <label htmlFor="value" className="form-label">
+                likelihood (likelihood)
               </label>
               <input
                 type="text"
-                name="name"
-                id="name"
-                autoComplete="name"
+                name="value"
+                id="value"
+                autoComplete="value"
                 className={classNames(
-                  touched && touched.name && errors && errors.name
+                  touched && touched.value && errors && errors.value
                     ? "form-input-invalid"
                     : "form-input",
                   "mt-1"
                 )}
-                {...register("name")}
+                {...register("value")}
               />
-              {touched && touched.name && errors && errors.name && (
-                <p className="mt-2 text-sm text-red-600">{errors.name.message}</p>
+              {touched && touched.value && errors && errors.value && (
+                <p className="mt-2 text-sm text-red-600">{errors.value.message}</p>
               )}
             </div>
 
             <div className="col-span-6 mt-8 flex justify-end gap-x-2">
-              <button
+
+            <button
                 type="button"
-                className="btn-danger"
+                className= "btn-danger"
                 onClick={() => setOpen(false)}
               >
                 ຍົກເລີກ
               </button>
               <button
                 type="submit"
-                className={submitted ? "btn-disabled" : "btn-primary"}
+                className= "btn-primary"
                 onClick={() => setOpen(true)}
                 disabled={submitted}
               >
@@ -90,8 +94,8 @@ function AddLikelihood({ open, setOpen }) {
   );
 }
 
-AddLikelihood.propTypes = {
-  setOpen: PropTypes.func.isRequired,
-};
+// AddLikelihood.propTypes = {
+//   setOpen: PropTypes.func.isRequired,
+// };
 
 export default AddLikelihood;

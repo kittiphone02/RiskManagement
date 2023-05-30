@@ -6,6 +6,7 @@ import { API_URI } from "../../constants/config";
 import { errorHandler } from "../../common/errorHandler";
 import { toast } from "react-toastify";
 
+
 // Async Thunk for loading user
 export const loadUser = createAsyncThunk(
     "auth/loadUser",

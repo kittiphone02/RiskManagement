@@ -31,9 +31,9 @@ function Branch() {
   return (
     <>
     <Layout>
-      <section className="section-md">
+      <section className="section w-full">
         {/* <Breadcrumbs pages={branchPages} /> */}
-        <div className="max-w-5xl mx-auto">
+        <div className="w-full mx-auto">
           <div className="shadow border-b border-gray-200 sm:mx-2 sm:rounded-lg">
           <div className="px-5 py-2 flex justify-end border-b">
               <NewButton onClick={() => setOpenNew(true)} />

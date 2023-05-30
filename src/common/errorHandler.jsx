@@ -7,7 +7,7 @@ export const errorHandler = (error, dispatch, type) => {
   }
 
   if (error.response) {
-    toast.error("An error occurred during login.");
+    toast.error(error.response.data.error);
   }
 
   if (type) {

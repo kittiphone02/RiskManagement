@@ -1,10 +1,20 @@
-import Sidebar from "./sidebar"
+import React from "react";
+import Sidebar from "./sidebar";
 
 function Layout({ children }) {
   return (
-    <div className="flex ">
-      <Sidebar />
-      <main className="max-w-5xl flex-1 mx-auto">{children}</main>
+    <div>
+      <div className="flex">
+        <div className="sticky top-0 h-screen">
+          <Sidebar />
+        </div>
+
+        <main className="flex-1 mx-auto mt-20 overflow-y-auto">
+          <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
+            {children}
+          </div>
+        </main>
+      </div>
     </div>
   );
 }

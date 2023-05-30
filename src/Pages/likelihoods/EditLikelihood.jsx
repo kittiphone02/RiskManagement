@@ -3,16 +3,16 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import classNames from "../../utils/classname";
-import { updateBranch } from "../../features/branch/branchSlice";
+import { updateLikelihoods } from "../../features/likelihoods/likelihoodsSlice";
 import DialogProvider from "../../common/DialogProvider";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 const schema = yup.object().shape({
-  name: yup.string().required("Branch name is required"),
+    value: yup.string().required("Branch v is required"),
 });
 
-function EditBranch({ open, setOpen, selectedBranch }) {
+function EditLikelihood({ open, setOpen, selectedlikelihood }) {
   const dispatch = useDispatch();
   const [submitted, setSubmitted] = useState(false);
   const {
@@ -24,50 +24,56 @@ function EditBranch({ open, setOpen, selectedBranch }) {
     resolver: yupResolver(schema),
     mode: "onBlur",
     defaultValues: {
-      name: selectedBranch?.name || "",
+        value: selectedlikelihood?.value || "",
     },
   });
 
   useEffect(() => {
-    setValue("name", selectedBranch?.name || "");
-  }, [selectedBranch, setValue]);
+    setValue("value", selectedlikelihood?.value || "");
+  }, [selectedlikelihood, setValue]);
 
 
 
   const onSubmit = async (values) => {
-    if (selectedBranch) {
-      setSubmitted(true);
-      const res = await dispatch(updateBranch({ id: selectedBranch._id, body: values }));
+
+    if (selectedlikelihood) {
+        setSubmitted(true);
+      const res = await dispatch(updateLikelihoods({ id: selectedlikelihood._id, body: values }));
       if (res){
         setOpen(false);
       }
-      setSubmitted(false);
-   
-    }
+        setSubmitted(false);
+      }
+
+    
   };
+
+
 
   return (
     <DialogProvider open={open}>
       <div className="dialog-container w-full sm:max-w-md">
         <div className="mt-3 sm:mt-0">
           <h3 className="text-xl leading-6 font-medium text-gray-900">
-            ແກ້ໄຂສາຂາ
+            ແກ້ໄຂLikelihood
           </h3>
           <form onSubmit={handleSubmit(onSubmit)} className="mt-5 grid grid-cols-6">
             <div className="col-span-6">
               <label htmlFor="name" className="form-label">
-                ສາຂາ (Branch)
+              Likelihood (Likelihood)
               </label>
+              
+
               <input
                 type="text"
-                name="name"
+                name="value"
                 id="name"
                 autoComplete="name"
                 className={classNames(
                   touchedFields.name && errors.name ? "form-input-invalid" : "form-input",
                   "mt-1"
                 )}
-                {...register("name")}
+                {...register("value")}
               />
               {touchedFields.name && errors.name && (
                 <p className="mt-2 text-sm text-red-600">{errors.name.message}</p>
@@ -98,10 +104,10 @@ function EditBranch({ open, setOpen, selectedBranch }) {
   );
 }
 
-EditBranch.propTypes = {
-  open: PropTypes.bool.isRequired,
-  setOpen: PropTypes.func.isRequired,
-  selectedBranch: PropTypes.object.isRequired,
-};
+// EditLikelihood.propTypes = {
+//   open: PropTypes.bool.isRequired,
+//   setOpen: PropTypes.func.isRequired,
+//   selectedBranch: PropTypes.object.isRequired,
+// };
 
-export default EditBranch;
+export default EditLikelihood;

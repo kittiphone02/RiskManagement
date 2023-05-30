@@ -5,41 +5,44 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../Components/layouts/RootLayout";
 import { DeleteButton, EditButton, NewButton } from "../../core/buttons";
-// import EditBranch from "./EditBranch";
-// import ConfirmModal from "../../core/dialog/ConfirmModal";
-import { getRiskLikelihoods } from "../../features/likelihoods/likelihoodsSlice";
+ import EditLikelihood from "./EditLikelihood";
+import ConfirmModal from "../../core/dialog/ConfirmModal";
+
+import { getRiskLikelihoods, deleteLikelihoods } from "../../features/likelihoods/likelihoodsSlice";
+
  import AddLikelihood  from "./AddLikelihood";
 import { Loader } from "../../core/spinner";
 
 function Likelihood() {
   const dispatch = useDispatch();
   const [openNew, setOpenNew] = useState(false);
-//   const [openEdit, setOpenEdit] = useState(false);
-//   const [openDelete, setDelete] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
+  const [openDelete, setDelete] = useState(false);
 //   const [selectedlikelihood, setSelectedlikelihood] = useState({});
 
 const { likelihoods, loading } = useSelector((state) => state.likelihoods);
+const [selectedlikelihood, setSelectedlikelihood] = useState(null);
 
 
   useEffect(() => {
     dispatch(getRiskLikelihoods());
-  }, []);
+  }, [dispatch]);
 
-//   const onDelete = async () => {
-//     if (selectedBranch) {
-//       await dispatch(deleteBranch(selectedBranch._id));
-//       setDelete(false);
-//     }
-//   };
+  const onDelete = async () => {
+    if (selectedlikelihood) {
+      await dispatch(deleteLikelihoods(selectedlikelihood._id));
+      setDelete(false);
+    }
+  };
 //   console.log(likelihoods);
 //   console.log(loading);
 
   return (
     <>
     <Layout>
-      <section className="section-md">
+    <section className="section w-full">
         {/* <Breadcrumbs pages={branchPages} /> */}
-        <div className="max-w-5xl mx-auto">
+        <div className="w-full mx-auto">
           <div className="shadow border-b border-gray-200 sm:mx-2 sm:rounded-lg">
           <div className="px-5 py-2 flex justify-end border-b">
               <NewButton onClick={() => setOpenNew(true)} />
@@ -100,7 +103,7 @@ const { likelihoods, loading } = useSelector((state) => state.likelihoods);
                       <td className="px-6 py-1 whitespace-nowrap text-sm text-gray-500">
                         <EditButton
                           onClick={() => {
-                            setSelectedBranch(item);
+                            setSelectedlikelihood(item);
                             setOpenEdit(true);
                           }}
                         />
@@ -108,7 +111,7 @@ const { likelihoods, loading } = useSelector((state) => state.likelihoods);
                       <td className="px-6 py-1 whitespace-nowrap text-sm text-gray-500">
                         <DeleteButton
                           onClick={() => {
-                            setSelectedBranch(item);
+                            setSelectedlikelihood(item);
                             setDelete(true);
                           }}
                         />
@@ -126,18 +129,18 @@ const { likelihoods, loading } = useSelector((state) => state.likelihoods);
       {/* Add Branch */}
       <AddLikelihood open={openNew} setOpen={setOpenNew} />
 
-      {/* <EditBranch
+      <EditLikelihood
       open={openEdit}
       setOpen={setOpenEdit}
-      selectedBranch={selectedBranch}
-    /> */}
+      selectedlikelihood={selectedlikelihood}
+    />
     {/* Delete Modal */}
-    {/* <ConfirmModal
+    <ConfirmModal
       open={openDelete}
       setOpen={setDelete}
       text="ທ່ານຕ້ອງການລຶບຂໍ້ມູນສາຂາຫຼືບໍ່"
       confirmed={onDelete}
-    /> */}
+    />
    </>
   );
 }
