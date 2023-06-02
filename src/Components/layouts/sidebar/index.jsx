@@ -9,7 +9,7 @@ import { SlSettings } from "react-icons/sl";
 import { AiOutlineAppstore } from "react-icons/ai";
 import { BsPerson } from "react-icons/bs";
 import { HiOutlineDatabase } from "react-icons/hi";
-import { TbReportAnalytics } from "react-icons/tb";
+
 import { RiBuilding3Line } from "react-icons/ri";
 import { useMediaQuery } from "react-responsive";
 import { MdMenu } from "react-icons/md";
@@ -71,6 +71,21 @@ const Sidebar = () => {
     dispatch(logout());
   };
 
+ const subMenusList = [
+    {
+      name: "Management",
+      icon: RiBuilding3Line,
+      menus: ["/", "branch", "likelihoods", "division"],  
+
+    },
+    {
+      name: "analytics",
+      icon: BsPerson,
+      menus: ["dashboard", "realtime", "events"],
+
+    },
+  ];
+  
   const Nav_animation = isTabletMid
     ? {
         open: {
@@ -104,18 +119,7 @@ const Sidebar = () => {
         },
       };
 
-  const subMenusList = [
-    {
-      name: "build",
-      icon: RiBuilding3Line,
-      menus: ["auth", "app settings", "stroage", "hosting"],
-    },
-    {
-      name: "analytics",
-      icon: TbReportAnalytics,
-      menus: ["dashboard", "realtime", "events"],
-    },
-  ];
+
 
   return (
     <div>

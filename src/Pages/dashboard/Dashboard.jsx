@@ -24,9 +24,11 @@
 
 
 
-import Layout from '../../Components/layouts/RootLayout'
-import { Fragment, useState } from 'react'
-import { Dialog, Menu, Transition } from '@headlessui/react'
+import Layout from '../../Components/layouts/RootLayout';
+import { Fragment, useState } from 'react';
+import { Dialog, Menu, Transition } from '@headlessui/react';
+import  Card  from '../../Components/ui/Card';
+import BasicArea from './BasicArea';
 import {
   Bars3CenterLeftIcon,
   BellIcon,
@@ -114,6 +116,7 @@ export default function Dashboard() {
 
           </div>
           <main className="flex-1 pb-8">
+
             {/* Page header */}
             <div className="bg-white shadow">
               <div className="px-4 sm:px-6 lg:mx-auto lg:max-w-6xl lg:px-8">
@@ -208,7 +211,23 @@ export default function Dashboard() {
                     </div>
                   ))}
                 </div>
+
+
               </div>
+
+
+     
+              <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-4">
+                <h2 className="text-lg font-medium leading-6 text-gray-900 gap-5 pb-4">Overview</h2>
+                  <div className="mt-2 flex flex-col">
+                
+                  <Card >
+                    <BasicArea/>
+                  </Card>
+                  </div>
+                </div>
+        
+              
 
               <h2 className="mx-auto mt-8 max-w-6xl px-4 text-lg font-medium leading-6 text-gray-900 sm:px-6 lg:px-8">
                 Recent activity
@@ -361,6 +380,12 @@ export default function Dashboard() {
                   </div>
                 </div>
               </div>
+
+
+
+
+
+
             </div>
           </main>
         </div>

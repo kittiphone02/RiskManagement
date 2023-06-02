@@ -52,6 +52,22 @@ export const movementRoute = [
     icon: HiCubeTransparent,
     permission: [ROLE_ADMIN],
   },
+  {
+    name: "divisions",
+    description: "ຈັດການຂໍ້ມູນລາຍງານຄວາມສ່ຽງທັງໝົດ.",
+    route: "/division",
+    icon: HiCubeTransparent,
+    permission: [ROLE_ADMIN],
+  },
+  {
+    name: "Measure",
+    description: "ຈັດການຂໍ້ມູນລາຍງານຄວາມສ່ຽງທັງໝົດ.",
+    route: "/Measure",
+    icon: HiCubeTransparent,
+    permission: [ROLE_ADMIN],
+  },
+
+
 
 
 ];
