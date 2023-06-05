@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../Components/layouts/RootLayout";
-import { divisionPages } from "../../constants/breadcrumb";
 import {
   getDivisionsByBranch,
   deleteDivision ,
@@ -10,7 +9,8 @@ import {
   setDivision, // Add this line to import the setDivision action creator
 } from "../../features/division/divisionSlice";
 
-// import { Breadcrumbs, Empty } from "../../cores/components";
+import Breadcrumbs from "../../core/components/Breadcrumbs";
+import { divisionPages } from "../../constants/breadcrumb";
 import { DeleteButton, EditButton, NewButton } from "../../core/buttons";
 import ConfirmModal from "../../core/dialog/ConfirmModal";
 import BranchDropdown from "./BranchDropdown";
@@ -58,13 +58,13 @@ const Division = () => {
 
   return (
     <Layout>
-      <section className="section-md">
-        {/* <Breadcrumbs pages={divisionPages} /> */}
+    <section className="section w-full">
+        <Breadcrumbs pages={divisionPages} />
         <div className="shadow border-b border-gray-200 sm:mx-2 sm:rounded-lg">
           <div className="px-5 py-2 flex gap-x-4 justify-end border-b">
             <BranchDropdown />
             <NewButton onClick={() => setOpenNew(true)} />
-          </div>
+          </div>  
           
           {loading && divisions.length === 0 ? (
             <div className="mb-5">

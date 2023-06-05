@@ -90,7 +90,7 @@ export const updateDivision = createAsyncThunk(
       dispatch(hideLoading());
       return response.data.data;
     } catch (error) {
-      // result = false;
+
       errorHandler(error, dispatch, "division/error");
       throw error;
     } 
@@ -174,6 +174,15 @@ export const divisionSlice = createSlice({
         state.division = updatedDivision; // Update the current division in state
         state.loading = false;
       })
+
+      // updateBranchSuccess: (state, action) => {
+      //   const updatedBranch = action.payload.data;
+      //   state.branches = state.branches.map((branch) =>
+      //     branch._id === updatedBranch._id ? updatedBranch : branch
+      //   );
+      //   state.loading = false;
+      // }
+      
       
       .addCase(deleteDivision.fulfilled, (state, action) => {
         const id = action.payload;

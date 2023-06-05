@@ -7,7 +7,8 @@ import Layout from "../../Components/layouts/RootLayout";
 import { DeleteButton, EditButton, NewButton } from "../../core/buttons";
  import EditLikelihood from "./EditLikelihood";
 import ConfirmModal from "../../core/dialog/ConfirmModal";
-
+import Breadcrumbs from "../../core/components/Breadcrumbs";
+import { likelihoodPages } from "../../constants/breadcrumb";
 import { getRiskLikelihoods, deleteLikelihoods } from "../../features/likelihoods/likelihoodsSlice";
 
  import AddLikelihood  from "./AddLikelihood";
@@ -41,7 +42,7 @@ const [selectedlikelihood, setSelectedlikelihood] = useState(null);
     <>
     <Layout>
     <section className="section w-full">
-        {/* <Breadcrumbs pages={branchPages} /> */}
+        <Breadcrumbs pages={likelihoodPages} />
         <div className="w-full mx-auto">
           <div className="shadow border-b border-gray-200 sm:mx-2 sm:rounded-lg">
           <div className="px-5 py-2 flex justify-end border-b">

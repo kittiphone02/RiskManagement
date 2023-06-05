@@ -14,8 +14,8 @@ import { RiBuilding3Line } from "react-icons/ri";
 import { useMediaQuery } from "react-responsive";
 import { MdMenu } from "react-icons/md";
 import { NavLink, useLocation } from "react-router-dom";
-import { logout } from "../../../features/auth/authSlice";
-import { useDispatch } from "react-redux";
+import { loadUser } from "../../../features/auth/authSlice";
+import { useDispatch,useSelector } from "react-redux";
 import "./index.css";
 import {
   Bars3CenterLeftIcon,
@@ -46,12 +46,23 @@ import { Fragment } from "react";
 
 import { Dialog, Menu, Transition } from "@headlessui/react";
 
+import { logout } from "../../../features/auth/authSlice";
+
 const Sidebar = () => {
   const dispatch = useDispatch();
   let isTabletMid = useMediaQuery({ query: "(max-width: 768px)" });
   const [open, setOpen] = useState(isTabletMid ? false : true);
   const sidebarRef = useRef();
   const { pathname } = useLocation();
+
+  const user = useSelector(state => state.auth.user);
+  const username = user ? user.username : null;
+
+
+  const user_role = useSelector(state => state.auth.user && state.auth.user.role);
+
+
+
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
@@ -70,6 +81,8 @@ const Sidebar = () => {
   const handleLogout = () => {
     dispatch(logout());
   };
+
+
 
  const subMenusList = [
     {
@@ -158,8 +171,7 @@ const Sidebar = () => {
                     alt=""
                   />
                   <span className="ml-3 hidden text-sm font-medium text-gray-700 lg:block">
-                    <span className="sr-only">Open user menu for </span>Emilia
-                    Birch
+                    <span className="sr-only">Open user menu for </span>{username}
                   </span>
                   <ChevronDownIcon
                     className="ml-1 hidden h-5 w-5 flex-shrink-0 text-gray-400 lg:block"
@@ -248,14 +260,20 @@ const Sidebar = () => {
 
         <div className="flex flex-col  h-full ">
           <ul className="whitespace-pre px-2.5 text-[0.9rem] py-5 flex flex-col gap-1  font-medium overflow-x-hidden scrollbar-track-white scrollbar-thumb-slate-100   md:h-[80%] h-[80%]">
-            {movementRoute.map((route, index) => (
-              <li key={index}>
-                <NavLink to={route.route} className="link">
-                  <route.icon size={23} className="min-w-max" />
-                  {route.name}
-                </NavLink>
-              </li>
-            ))}
+            
+
+            {movementRoute
+              .filter((route) => route.permission.includes(user_role))
+              .map((route, index) => (
+                <li key={index}>
+                  <NavLink to={route.route} className="link">
+                    <route.icon size={23} className="min-w-max" />
+                    {route.name}
+                  </NavLink>
+                </li>
+              ))}
+
+ 
 
             {(open || isTabletMid) && (
               <div className="border-y py-5 border-slate-300 ">

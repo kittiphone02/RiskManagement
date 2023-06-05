@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { HomeIcon } from "@heroicons/react/solid";
+
+import { HiHome } from "react-icons/hi2";
 
 function Breadcrumbs({ pages }) {
   return (
@@ -11,7 +12,7 @@ function Breadcrumbs({ pages }) {
         <li className="flex">
           <div className="flex items-center">
             <Link to="/" className="text-gray-400 hover:text-gray-500">
-              <HomeIcon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
+              <HiHome className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
               <span className="sr-only">Home</span>
             </Link>
           </div>

@@ -6,6 +6,8 @@ import EditBranch from "./EditBranch";
 import ConfirmModal from "../../core/dialog/ConfirmModal";
 import { getBranches, deleteBranch } from "../../features/branch/branchSlice";
 import AddBranch from "./AddBranch";
+import Breadcrumbs from "../../core/components/Breadcrumbs";
+import { branchPages } from "../../constants/breadcrumb";
 
 
 function Branch() {
@@ -32,7 +34,7 @@ function Branch() {
     <>
     <Layout>
       <section className="section w-full">
-        {/* <Breadcrumbs pages={branchPages} /> */}
+        <Breadcrumbs pages={branchPages} />
         <div className="w-full mx-auto">
           <div className="shadow border-b border-gray-200 sm:mx-2 sm:rounded-lg">
           <div className="px-5 py-2 flex justify-end border-b">

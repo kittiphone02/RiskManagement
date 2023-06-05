@@ -25,9 +25,10 @@ export const addMeasure = createAsyncThunk(
   async (body, { dispatch }) => {
     dispatch(showLoading());
     try {
-      await axios.post(`${API_URI}/api/measures`, body);
+      const response = await axios.post(`${API_URI}/api/measures`, body);
       successMessage('ເພີ່ມຂໍ້ມູນການປະເມີນຄວາມສ່ຽງສໍາເລັດ');
       dispatch(hideLoading());
+      return response.data;
     } catch (err) {
       errorHandler(err, dispatch, 'measure');
       throw err;
@@ -91,10 +92,15 @@ const measureSlice = createSlice({
         state.total = action.payload.total;
         state.loading = false;
       })
+
+
       .addCase(addMeasure.fulfilled, (state, action) => {
         state.measures.push(action.payload.data);
         state.loading = false;
       })
+      
+      
+
       .addCase(updateMeasure.fulfilled, (state, action) => {
         const updatedMeasure = action.payload.data;
         const index = state.measures.findIndex((measure) => measure._id === updatedMeasure._id);

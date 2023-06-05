@@ -4,7 +4,9 @@ const date = new Date();
 
 // export const API_URI = "http://localhost:5000";
 // export const API_URI = "https://risk-register-api.herokuapp.com";
-export const API_URI = "http://apb.services.pro:35021";
+// export const API_URI = "http://apb.services.pro:35021";
+export const API_URI = "http://10.151.146.155:40431";
+
 // CONSTANT VARIABLE
 export const currentYear = date.getFullYear();
 

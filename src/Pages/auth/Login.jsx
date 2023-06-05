@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { login } from "../../features/auth/authSlice";
+import { Spinner } from "../../core/spinner";
 
 const schema = yup.object().shape({
   username: yup.string().required("Username is required"),
@@ -109,7 +110,7 @@ const Login = () => {
                   disabled={submitted}
                   className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
-                  {submitted ? "Loading..." : "Sign in"}
+                  {submitted ? <Spinner/> : "Sign in"}
                 </button>
               </div>
             </form>
