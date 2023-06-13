@@ -1,36 +1,31 @@
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
+// import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 import classNames from "../../utils/classname";
+import {
+  ROLE_APPROVE,
+  ROLE_CREATE,
+  ROLE_USER,
+  ROLE_VERIFY,
+} from "../../constants/config";
 
-function BranchDropdown({ branches, selectedBranch, onChange, disabled }) {
+const roles = [ROLE_USER, ROLE_CREATE, ROLE_VERIFY, ROLE_APPROVE];
+
+function RolesDropdown({ value, setValue }) {
   return (
-    <Listbox
-      value={selectedBranch}
-      onChange={(val) => onChange(val)}
-      disabled={disabled}
-    >
-      <div className="relative">
-        <Listbox.Button
-          className={classNames(
-            disabled ? "bg-gray-100" : "bg-white",
-            "relative w-full sm:w-40 border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          )}
-        >
+    <Listbox value={value} onChange={(val) => setValue(val)}>
+      <div className="relative mt-1">
+        <Listbox.Button className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
           <div className="flex items-center">
             <span className="ml-3 block truncate font-lao">
-              {disabled
-                ? "ເລືອກສາຂາ"
-                : selectedBranch
-                ? selectedBranch.name
-                : "ເລືອກສາຂາ"}
+              {value ? value : "ເລືອກປະເພດຜູ້ໃຊ້"}
             </span>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-            <SelectorIcon
+            {/* <SelectorIcon
               className="h-5 w-5 text-gray-400"
               aria-hidden="true"
-            />
+            /> */}
           </div>
         </Listbox.Button>
 
@@ -41,7 +36,7 @@ function BranchDropdown({ branches, selectedBranch, onChange, disabled }) {
           leaveTo="opacity-0"
         >
           <Listbox.Options className="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
-            {branches?.map((item, index) => (
+            {roles.map((item, index) => (
               <Listbox.Option
                 key={index}
                 className={({ active }) =>
@@ -60,7 +55,7 @@ function BranchDropdown({ branches, selectedBranch, onChange, disabled }) {
                         "ml-3 block truncate font-lao"
                       )}
                     >
-                      {item.name}
+                      {item}
                     </p>
                     {selected ? (
                       <p
@@ -69,7 +64,7 @@ function BranchDropdown({ branches, selectedBranch, onChange, disabled }) {
                           "absolute inset-y-0 right-0 flex items-center pr-4"
                         )}
                       >
-                        <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                        {/* <CheckIcon className="h-5 w-5" aria-hidden="true" /> */}
                       </p>
                     ) : null}
                   </>
@@ -83,4 +78,4 @@ function BranchDropdown({ branches, selectedBranch, onChange, disabled }) {
   );
 }
 
-export default BranchDropdown;
+export default RolesDropdown;

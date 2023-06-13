@@ -32,7 +32,7 @@ module.exports = {
   },
   variants: {
     extend: {},
-    scrollbar: ["rounded"],
+    // scrollbar: ["rounded"],
   },
   plugins: [require("@tailwindcss/forms"), require("tailwind-scrollbar")],
 }

@@ -10,37 +10,42 @@ import Dashboard from "../Pages/dashboard/Dashboard";
 import NotFound from "../common/NotFound";
 // import Setting from "../pages/setting";
 import AuthRoute from "./AuthRoute";
-
+import Layout from "../Components/layouts/RootLayout";
 const Routing = () => {
   const auth = useSelector((state) => state.auth);
 
   return (
     <Routes>
-      <Route path="/auth" element={<Login />} />
-
-      <Route
-        path="/"
-        element={
+    <Route path="/auth" element={<Login />} />
+  
+    <Route
+      path="/"
+      element={
+        <Layout>
           <AuthRoute>
             <Dashboard />
           </AuthRoute>
-        }
-      />
-      
-      <Route path="*" element={<NotFound />} />
-
-      {privateRoutes.map(({ Component, path, permission }, index) => (
-        <Route
-          key={index}
-          path={path}
-          element={
+        </Layout>
+      }
+    />
+    
+    <Route path="*" element={<NotFound />} />
+  
+    {privateRoutes.map(({ Component, path, permission }, index) => (
+      <Route
+        key={index}
+        path={path}
+        element={
+          <Layout>
             <PrivateRoute auth={auth} permissions={permission}>
               <Component />
             </PrivateRoute>
-          }
-        />
-      ))}
-    </Routes>
+          </Layout>
+        }
+      />
+    ))}
+  </Routes>
+  
   );
 };
 

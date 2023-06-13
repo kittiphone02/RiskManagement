@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
-import Layout from "../../Components/layouts/RootLayout";
+
 import {
   getDivisionsByBranch,
   deleteDivision ,
@@ -16,7 +16,7 @@ import ConfirmModal from "../../core/dialog/ConfirmModal";
 import BranchDropdown from "./BranchDropdown";
 import AddDivision from "./AddDivision";
  import EditDivision from "./EditDivision";
-import Empty from "../../Components/Empty";
+import Empty from "../../core/components/Empty";
 
 const Division = () => {
   const dispatch = useDispatch();
@@ -57,7 +57,7 @@ const Division = () => {
   
 
   return (
-    <Layout>
+    <>
     <section className="section w-full">
         <Breadcrumbs pages={divisionPages} />
         <div className="shadow border-b border-gray-200 sm:mx-2 sm:rounded-lg">
@@ -172,7 +172,7 @@ const Division = () => {
       <AddDivision open={openNew} setOpen={setOpenNew} />
 
       <EditDivision open={openEdit} setOpen={setOpenEdit} />
-    </Layout>
+    </>
   );
 };
 

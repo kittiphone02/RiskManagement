@@ -3,7 +3,6 @@
 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Layout from "../../Components/layouts/RootLayout";
 import { DeleteButton, EditButton, NewButton } from "../../core/buttons";
  import EditLikelihood from "./EditLikelihood";
 import ConfirmModal from "../../core/dialog/ConfirmModal";
@@ -35,12 +34,14 @@ const [selectedlikelihood, setSelectedlikelihood] = useState(null);
       setDelete(false);
     }
   };
+
+  
 //   console.log(likelihoods);
 //   console.log(loading);
 
   return (
     <>
-    <Layout>
+    <>
     <section className="section w-full">
         <Breadcrumbs pages={likelihoodPages} />
         <div className="w-full mx-auto">
@@ -125,7 +126,7 @@ const [selectedlikelihood, setSelectedlikelihood] = useState(null);
           </div>
         </div>
       </section>
-    </Layout>
+    </>
 
       {/* Add Branch */}
       <AddLikelihood open={openNew} setOpen={setOpenNew} />

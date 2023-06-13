@@ -6,12 +6,19 @@ import {
   useSortBy,
   usePagination,
 } from "react-table";
+
 // import {
 //   ChevronDoubleLeftIcon,
 //   ChevronLeftIcon,
 //   ChevronRightIcon,
 //   ChevronDoubleRightIcon,
 // } from "@heroicons/react/outline";
+import { HiOutlineChevronLeft,
+  HiOutlineChevronRight,
+  HiOutlineChevronDoubleRight,
+  HiOutlineChevronDoubleLeft
+
+} from "react-icons/hi2";
 
 import { Button, PageButton } from "../buttons/Button";
 import { SortIcon, SortUpIcon, SortDownIcon } from "../icons/Icons";
@@ -200,7 +207,7 @@ function Table({ columns, data }) {
                 disabled={!canPreviousPage}
               >
                 <span className="sr-only">First</span>
-                {/* <ChevronDoubleLeftIcon className="h-5 w-5" aria-hidden="true" /> */}
+                <HiOutlineChevronDoubleLeft className="h-5 w-5" aria-hidden="true" />
               </PageButton>
               <PageButton
                 className={classNames(
@@ -210,7 +217,7 @@ function Table({ columns, data }) {
                 disabled={!canPreviousPage}
               >
                 <span className="sr-only">Previous</span>
-                {/* <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" /> */}
+                <HiOutlineChevronLeft className="h-5 w-5" aria-hidden="true" />
               </PageButton>
               <PageButton
                 className={classNames(
@@ -220,7 +227,7 @@ function Table({ columns, data }) {
                 disabled={!canNextPage}
               >
                 <span className="sr-only">Next</span>
-                {/* <ChevronRightIcon className="h-5 w-5" aria-hidden="true" /> */}
+                <HiOutlineChevronRight className="h-5 w-5" aria-hidden="true" />
               </PageButton>
               <PageButton
                 className={classNames(
@@ -231,10 +238,10 @@ function Table({ columns, data }) {
                 disabled={!canNextPage}
               >
                 <span className="sr-only">Last</span>
-                {/* <ChevronDoubleRightIcon
+                <HiOutlineChevronDoubleRight
                   className="h-5 w-5"
                   aria-hidden="true"
-                /> */}
+                />
               </PageButton>
             </nav>
           </div>

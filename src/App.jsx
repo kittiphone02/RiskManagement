@@ -5,7 +5,8 @@ import { Provider } from "react-redux";
 import store from "./features/store";
 import { loadUser } from "./features/auth/authSlice";
 import setAuthToken from "./utils/setAuthToken";
-
+import 'regenerator-runtime/runtime'
+import Layout from "./Components/layouts/RootLayout";
 import { ToastContainer, toast } from "react-toastify";
 
 
@@ -26,7 +27,8 @@ function App() {
     <Provider store={store}>
       <div className="relative">
 
-        <Routing />
+      <Routing />
+      
       </div>
       <ToastContainer position={toast.POSITION.TOP_RIGHT} />
     </Provider>

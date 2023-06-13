@@ -1,21 +1,18 @@
-import { useEffect, useState } from "react";
-import { useRef } from "react";
+import { useEffect, useState, useRef } from "react";
+
 import SubMenu from "./SubMenu";
 import { motion } from "framer-motion";
 
 // * React icons
 import { IoIosArrowBack } from "react-icons/io";
 import { SlSettings } from "react-icons/sl";
-import { AiOutlineAppstore } from "react-icons/ai";
 import { BsPerson } from "react-icons/bs";
-import { HiOutlineDatabase } from "react-icons/hi";
-
 import { RiBuilding3Line } from "react-icons/ri";
 import { useMediaQuery } from "react-responsive";
 import { MdMenu } from "react-icons/md";
 import { NavLink, useLocation } from "react-router-dom";
 import { loadUser } from "../../../features/auth/authSlice";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./index.css";
 import {
   Bars3CenterLeftIcon,
@@ -40,14 +37,14 @@ import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/20/solid";
 
-import { movementRoute } from "../../../constants/routes";
+import { dashbroadRoute, movementRoute } from "../../../constants/routes";
 
 import { Fragment } from "react";
 
 import { Dialog, Menu, Transition } from "@headlessui/react";
 
 import { logout } from "../../../features/auth/authSlice";
-
+import logo from "../../../assets/images/workflow-mark-indigo-600.svg";
 const Sidebar = () => {
   const dispatch = useDispatch();
   let isTabletMid = useMediaQuery({ query: "(max-width: 768px)" });
@@ -55,16 +52,15 @@ const Sidebar = () => {
   const sidebarRef = useRef();
   const { pathname } = useLocation();
 
-  const user = useSelector(state => state.auth.user);
+  const user = useSelector((state) => state.auth.user);
   const username = user ? user.username : null;
 
-
-  const user_role = useSelector(state => state.auth.user && state.auth.user.role);
-
-
+  const user_role = useSelector(
+    (state) => state.auth.user && state.auth.user.role
+  );
 
   function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
+    return classes.filter(Boolean).join(" ");
   }
   useEffect(() => {
     if (isTabletMid) {
@@ -81,24 +77,21 @@ const Sidebar = () => {
   const handleLogout = () => {
     dispatch(logout());
   };
+  
 
-
-
- const subMenusList = [
+  const subMenusList = [
     {
       name: "Management",
       icon: RiBuilding3Line,
-      menus: ["/", "branch", "likelihoods", "division"],  
-
+      menus: ["/", "branch", "likelihoods", "division"],
     },
     {
       name: "analytics",
       icon: BsPerson,
       menus: ["dashboard", "realtime", "events"],
-
     },
   ];
-  
+
   const Nav_animation = isTabletMid
     ? {
         open: {
@@ -131,8 +124,6 @@ const Sidebar = () => {
           },
         },
       };
-
-
 
   return (
     <div>
@@ -171,7 +162,8 @@ const Sidebar = () => {
                     alt=""
                   />
                   <span className="ml-3 hidden text-sm font-medium text-gray-700 lg:block">
-                    <span className="sr-only">Open user menu for </span>{username}
+                    <span className="sr-only">Open user menu for </span>
+                    {username}
                   </span>
                   <ChevronDownIcon
                     className="ml-1 hidden h-5 w-5 flex-shrink-0 text-gray-400 lg:block"
@@ -218,16 +210,14 @@ const Sidebar = () => {
                   <Menu.Item>
                     {({ active }) => (
                       <a
+                        onClick={handleLogout}
                         href="#"
                         className={classNames(
                           active ? "bg-gray-100" : "",
                           "block px-4 py-2 text-sm text-gray-700"
                         )}
                       >
-                        <button onClick={handleLogout}>
-                          {" "}
-                          <span>ອອກຈາກລະບົບ</span>
-                        </button>
+                        ອອກຈາກລະບົບ
                       </a>
                     )}
                   </Menu.Item>
@@ -250,30 +240,46 @@ const Sidebar = () => {
         initial={{ x: isTabletMid ? -250 : 0 }}
         animate={open ? "open" : "closed"}
         className=" bg-white text-gray shadow-xl z-[999] max-w-[16rem]  w-[16rem] 
-            overflow-hidden md:relative fixed
+            overflow-hidden md:relative fixed top-0 left-0 bottom-0
          h-screen drop-shadow-md"
       >
         <div className="flex items-center gap-2.5 font-medium border-b py-3 border-slate-300  mx-3">
-          <img src="../../../favicon.ico" width={60} alt="" />
-          <span className="text-xl whitespace-pre">APB</span>
+          {/* <img src="../../../favicon.ico" width={60} alt="" /> */}
+          <img className="h-8 w-auto sm:h-10" src={logo} alt="logo" />
+          <h1 className="hidden font-sans text-2xl font-bold text-indigo-600 md:flex">
+            Risk Register
+          </h1>
         </div>
 
         <div className="flex flex-col  h-full ">
           <ul className="whitespace-pre px-2.5 text-[0.9rem] py-5 flex flex-col gap-1  font-medium overflow-x-hidden scrollbar-track-white scrollbar-thumb-slate-100   md:h-[80%] h-[80%]">
-            
-
-            {movementRoute
+            {dashbroadRoute
               .filter((route) => route.permission.includes(user_role))
               .map((route, index) => (
                 <li key={index}>
-                  <NavLink to={route.route} className="link">
+                  <NavLink to={route.route} className="font-lao link">
                     <route.icon size={23} className="min-w-max" />
                     {route.name}
                   </NavLink>
                 </li>
               ))}
 
- 
+            {(open || isTabletMid) && (
+              <small className="font-lao font-bold pl-3 text-slate-500 inline-block mb-2 py-3">
+                ຈັດການຂໍ້ມູນ
+              </small>
+            )}
+
+            {movementRoute
+              .filter((route) => route.permission.includes(user_role))
+              .map((route, index) => (
+                <li key={index}>
+                  <NavLink to={route.route} className="font-lao link">
+                    <route.icon size={23} className="min-w-max" />
+                    {route.name}
+                  </NavLink>
+                </li>
+              ))}
 
             {(open || isTabletMid) && (
               <div className="border-y py-5 border-slate-300 ">

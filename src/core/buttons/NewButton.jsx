@@ -9,7 +9,7 @@ function NewButton({ onClick }) {
     
     onClick={onClick}>
       <BiPlus className="w-6" />
-      <span>ເພີ່ມ</span>
+      <span className="font-lao">ເພີ່ມ</span>
     </button>
   );
 }

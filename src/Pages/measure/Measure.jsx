@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import Layout from "../../Components/layouts/RootLayout";
+
  import { measurePages } from "../../constants/breadcrumb";
 import {
   deleteMeasure,
@@ -39,7 +39,7 @@ function Measure() {
   };
 
   return (
-    <Layout>
+    <>
   <section className="section w-full">
         <Breadcrumbs pages={measurePages} />
         <div className="shadow border-b border-gray-200 sm:mx-2 sm:rounded-lg">
@@ -117,10 +117,10 @@ function Measure() {
                         (idx + 1)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                      {item.likelihood.value}
+                      {item.likelihood?.value}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                      {item.impact.value}
+                      {item.impact?.value}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-normal text-gray-500">
                       {item.level?.name}
@@ -175,7 +175,7 @@ function Measure() {
         text="ທ່ານຕ້ອງການລຶບຂໍ້ມູນການປະເມີນຄວາມສ່ຽງຫຼືບໍ່"
         confirmed={onDelete}
       />
-    </Layout>
+    </>
   );
 }
 

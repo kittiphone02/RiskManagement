@@ -1,0 +1,12 @@
+/* @font-face {
+  font-family: 'NotoSans-Lao';
+  font-style: normal;
+  font-weight: 400;
+  src: local('NotoSans-Lao Regular'), url('../fonts/NotoSansLao-Medium.ttf') format('truetype');
+} */
+
+/* Apply the custom font to all elements */
+/* body, html { 
+  font-family: 'NotoSans-Lao', Arial, sans-serif;
+}
+ */

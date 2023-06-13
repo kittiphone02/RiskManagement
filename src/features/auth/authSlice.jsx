@@ -5,6 +5,7 @@ import setAuthToken from "../../utils/setAuthToken";
 import { API_URI } from "../../constants/config";
 import { errorHandler } from "../../common/errorHandler";
 import { toast } from "react-toastify";
+import { errorMessage } from "../../services/sweetAlert";
 
 
 // Async Thunk for loading user
@@ -24,7 +25,7 @@ export const loadUser = createAsyncThunk(
           dispatch(authError());
         }
       } catch (error) {
-        errorHandler(error, dispatch, "LOAD_USER_FAIL");
+        errorMessage(error, dispatch, "LOAD_USER_FAIL");
       } finally {
         dispatch(hideLoading());
       }
@@ -49,7 +50,7 @@ export const loadUser = createAsyncThunk(
         // Dispatch the loadUser action immediately after login
         dispatch(loadUser());
       } catch (err) {
-        errorHandler(err, dispatch, "LOGIN_FAIL");
+        errorMessage(err, dispatch, "LOGIN_FAIL");
       } finally {
         dispatch(hideLoading());
       }

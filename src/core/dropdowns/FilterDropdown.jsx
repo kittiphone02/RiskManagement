@@ -1,7 +1,7 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { AdjustmentsIcon } from "@heroicons/react/outline";
+import { HiAdjustmentsHorizontal } from "react-icons/hi2";
 import classNames from "../../utils/classname";
 import { dataTypes, dateTypes } from "../../constants/filterOption";
 
@@ -13,7 +13,7 @@ function FilterDropdown({ dateType, dataType, setDateType, setDataType }) {
           className="rounded-md shadow-sm p-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
           style={{ height: "2.4rem" }}
         >
-          <AdjustmentsIcon className="h-5 w-5" aria-hidden="true" />
+          <HiAdjustmentsHorizontal className="h-5 w-5" aria-hidden="true" /> 
         </Menu.Button>
       </div>
 

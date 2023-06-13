@@ -1,20 +1,20 @@
-// Existing variables and their defaults
-$nice-dates-color-gray-dark: #4338ca;
-$nice-dates-color-gray: #999;
-$nice-dates-color-gray-light: #ddd;
-$nice-dates-color-accent: $nice-dates-color-gray-dark;
-$nice-dates-font-size-small: 12px;
-$nice-dates-font-size-base: 14px;
-$nice-dates-font-size-big: 16px;
+// // Existing variables and their defaults
+// $nice-dates-color-gray-dark: #4338ca;
+// $nice-dates-color-gray: #999;
+// $nice-dates-color-gray-light: #ddd;
+// $nice-dates-color-accent: $nice-dates-color-gray-dark;
+// $nice-dates-font-size-small: 12px;
+// $nice-dates-font-size-base: 14px;
+// $nice-dates-font-size-big: 16px;
 
-@import "../../../node_modules/react-nice-dates/src/style";
+// @import "../../../node_modules/react-nice-dates/src/style";
 
-.nice-dates-navigation,
-.nice-dates-day {
-  @apply text-gray-800;
-}
+// .nice-dates-navigation,
+// .nice-dates-day {
+//   @apply text-gray-800;
+// }
 
-.nice-dates-popover {
-  @apply shadow-lg p-1 overflow-hidden;
-  max-width: 25rem;
-}
+// .nice-dates-popover {
+//   @apply shadow-lg p-1 overflow-hidden;
+//   max-width: 25rem;
+// }

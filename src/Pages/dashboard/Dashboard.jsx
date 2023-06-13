@@ -105,7 +105,7 @@ export default function Dashboard() {
   return (
     <>
 
-      <Layout>
+   
 
 
 
@@ -391,7 +391,7 @@ export default function Dashboard() {
           </main>
         </div>
 
-      </Layout>
+
     </>
   )
 }

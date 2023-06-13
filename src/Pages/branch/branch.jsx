@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Layout from "../../Components/layouts/RootLayout";
+
 import { DeleteButton, EditButton, NewButton } from "../../core/buttons";
 import EditBranch from "./EditBranch";
 import ConfirmModal from "../../core/dialog/ConfirmModal";
@@ -32,7 +32,7 @@ function Branch() {
 
   return (
     <>
-    <Layout>
+  
       <section className="section w-full">
         <Breadcrumbs pages={branchPages} />
         <div className="w-full mx-auto">
@@ -117,7 +117,7 @@ function Branch() {
           </div>
         </div>
       </section>
-    </Layout>
+
 
       {/* Add Branch */}
       <AddBranch open={openNew} setOpen={setOpenNew} />

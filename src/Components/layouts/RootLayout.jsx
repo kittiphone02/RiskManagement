@@ -5,7 +5,7 @@ function Layout({ children }) {
   return (
     <div>
       <div className="flex">
-        <div className="sticky top-0 h-screen">
+        <div className="sticky top-0 h-screen z-10">
           <Sidebar />
         </div>
 

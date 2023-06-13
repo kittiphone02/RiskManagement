@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
+import { HiCheck,HiOutlineChevronUpDown } from "react-icons/hi2";
 import classNames from "../../utils/classname";
 
 function DivisionDropdown({ divisions, selectedDivision, onChange, disabled }) {
@@ -27,7 +27,7 @@ function DivisionDropdown({ divisions, selectedDivision, onChange, disabled }) {
             </span>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-            <SelectorIcon
+            <HiOutlineChevronUpDown
               className="h-5 w-5 text-gray-400"
               aria-hidden="true"
             />
@@ -41,9 +41,9 @@ function DivisionDropdown({ divisions, selectedDivision, onChange, disabled }) {
           leaveTo="opacity-0"
         >
           <Listbox.Options className="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
-            {divisions.length < 1 && (
-              <div className="text-center font-lao py-1">ບໍ່ມີຂໍໍ້ມູນ</div>
-            )}
+          {!divisions || divisions.length < 1 && (
+            <div className="text-center font-lao py-1">ບໍ່ມີຂໍໍ້ມູນ</div>
+          )}
             {Array.isArray(divisions) &&
               divisions?.map((item, index) => (
                 <Listbox.Option
@@ -73,7 +73,7 @@ function DivisionDropdown({ divisions, selectedDivision, onChange, disabled }) {
                             "absolute inset-y-0 right-0 flex items-center pr-4"
                           )}
                         >
-                          <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                          <HiCheck className="h-5 w-5" aria-hidden="true" />
                         </p>
                       ) : null}
                     </>
